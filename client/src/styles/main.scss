@@ -1,16 +1,28 @@
-@import "./variables";
+@import "../styles/variables";
 @import "./pages/login";
 @import "./pages/dashboard";
-
-//@import "./base/reset";
-//@import "./layout/dashboard";
+@import "./pages/noticias";
+@import "./pages/menu";
+@import "./pages/layout";
+@import "./pages/topbar";
+@import "./pages/noticias";
 
 .app {
   background-color: #0a0f1c;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 64px;
+
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    border-left: 1px solid $color-gray-dark;
+    border-right: 1px solid $color-gray-dark;
+    min-height: 100vh;
+    background-color: inherit;
+  }
 
   .title {
     color: #00ffcc;

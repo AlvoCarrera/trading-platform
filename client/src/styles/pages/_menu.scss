@@ -1,0 +1,107 @@
+// src/styles/components/_menu.scss
+
+@import "../variables";
+
+.menu-wrapper {
+  height: calc(100vh - 64px); // para que empiece debajo del TopBar
+  padding-top: 64px;
+  width: 220px;
+  background-color: $color-surface;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.3s ease-in-out;
+
+  &.collapsed {
+    width: 0px;
+
+    .menu-header,
+    .menu-footer,
+    .menu-nav ul li a span {
+      display: none;
+    }
+  }
+
+  .toggle-button {
+    align-self: flex-end;
+    background: transparent;
+    border: none;
+    color: $color-white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: $spacing-sm;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: $color-gray-light;
+    }
+  }
+
+  .menu-header {
+    font-size: $font-size-lg;
+    font-weight: bold;
+    margin-bottom: $spacing-lg;
+    color: $color-accent;
+    padding-left: $spacing-md;
+  }
+
+  .menu-nav {
+    flex-grow: 1;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0 $spacing-sm;
+
+      li {
+        margin-bottom: $spacing-md;
+
+        a {
+          display: flex;
+          align-items: center;
+          gap: $spacing-sm;
+          color: $color-white;
+          text-decoration: none;
+          font-size: $font-size-base;
+          font-weight: 500;
+          transition: color 0.2s ease-in-out;
+
+          &:hover {
+            color: $color-accent;
+          }
+
+          svg {
+            font-size: 1.2rem;
+            min-width: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-footer {
+    font-size: $font-size-sm;
+    color: $color-gray-light;
+    padding-left: $spacing-md;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-wrapper {
+    width: 100%;
+    height: auto;
+    margin-top: 64px;
+    padding: $spacing-md;
+
+    &.collapsed {
+      width: 100%;
+    }
+
+    .menu-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-md;
+    }
+  }
+}

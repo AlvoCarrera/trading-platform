@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { googleProvider } from "../config/firebase";
 
 interface User {
@@ -19,9 +19,10 @@ interface User {
 interface AuthContextType {
   user: User | null;
   token: string | null;
+  loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   loginWithGoogle: () => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -29,6 +30,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const login = async (email: string, password: string) => {
@@ -62,7 +64,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate("/dashboard");
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth); // Cierra sesión Google
+    } catch (error) {
+      console.error("Error al cerrar sesión de Google:", error);
+    }
+
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
@@ -75,14 +84,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const storedUser = localStorage.getItem("user");
 
     if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
+      try {
+        const payload = JSON.parse(atob(storedToken.split(".")[1]));
+        const isExpired = payload.exp * 1000 < Date.now();
+
+        if (!isExpired) {
+          setToken(storedToken);
+          setUser(JSON.parse(storedUser));
+        } else {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+        }
+      } catch (e) {
+        console.error("Error al decodificar el token:", e);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
     }
+    setLoading(false);
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ user, token, login, loginWithGoogle, logout }}
+      value={{ user, token, loading, login, loginWithGoogle, logout }}
     >
       {children}
     </AuthContext.Provider>

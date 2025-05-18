@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
+import Noticias from "../pages/Noticias";
 import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
@@ -10,6 +11,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
       <Route
         path="/dashboard"
         element={
@@ -18,6 +20,16 @@ const AppRoutes = () => {
           </PrivateRoute>
         }
       />
+
+      <Route
+        path="/noticias"
+        element={
+          <PrivateRoute>
+            <Noticias />
+          </PrivateRoute>
+        }
+      />
+
       <Route path="*" element={<Login />} />
     </Routes>
   );

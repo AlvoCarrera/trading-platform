@@ -1,0 +1,39 @@
+@import "../variables";
+
+.layout {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: 64px;
+  padding: $spacing-xl $spacing-lg;
+  transition: all 0.3s ease-in-out;
+
+  &.collapsed {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    padding: $spacing-xl 4vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: $spacing-xl 3vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: $spacing-xl 2vw;
+  }
+}

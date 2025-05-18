@@ -1,39 +1,39 @@
 // src/pages/Dashboard.tsx
-
-import { useAuth } from "../context/AuthContext";
+import { useMenu } from "../context/MenuContext";
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
+  const { collapsed } = useMenu();
 
   return (
-    <div className="dashboard-container">
-      <header className="dashboard-header">
-        <div className="user-info">
-          <span>{user?.displayName}</span>
-          <button onClick={logout}>Cerrar sesión</button>
-        </div>
-      </header>
-      <aside className="dashboard-sidebar">
-        <nav>
+    <div className={`main-content ${collapsed ? "collapsed" : ""}`}>
+      <main className="dashboard-main">
+        <section className="dashboard-intro">
+          <h1>Bienvenido a tu Plataforma de Trading</h1>
+          <p>
+            Este es tu espacio personal para crecer como trader profesional.
+            Aquí podrás:
+          </p>
           <ul>
             <li>
-              <a href="#">Inicio</a>
+              🧾 Registrar tus operaciones y emociones en tu{" "}
+              <strong>Bitácora</strong>
             </li>
             <li>
-              <a href="#">Cursos</a>
+              🎥 Aprender con nuestros <strong>Cursos interactivos</strong>
             </li>
             <li>
-              <a href="#">Bitácora</a>
+              📊 Visualizar el mercado y estar informado con{" "}
+              <strong>Noticias y Gráficos</strong>
             </li>
             <li>
-              <a href="#">Noticias</a>
+              👥 Formar parte de una <strong>Comunidad de traders</strong> con
+              visión
             </li>
           </ul>
-        </nav>
-      </aside>
-      <main className="dashboard-main">
-        <h2>Bienvenido, {user?.displayName}</h2>
-        <p>Este será tu centro de control.</p>
+          <p className="start-msg">
+            ¡Comienza ahora explorando cada sección en el menú lateral!
+          </p>
+        </section>
       </main>
     </div>
   );
