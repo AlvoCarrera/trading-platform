@@ -4,9 +4,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuth } from "../context/AuthContext";
 import type { MouseEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { login, loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -83,6 +85,14 @@ const Login = () => {
           className="google-btn"
         >
           Iniciar sesión con Google
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate("/register")}
+          className="register-btn"
+        >
+          ¿No tienes cuenta? Regístrate
         </button>
       </form>
     </div>
