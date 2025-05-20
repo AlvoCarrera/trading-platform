@@ -1,7 +1,7 @@
 // src/layout/PrivateLayout.tsx
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Menu from "../pages/Menu";
+import Menu from "../components/Menu";
 
 const PrivateLayout = () => {
   return (

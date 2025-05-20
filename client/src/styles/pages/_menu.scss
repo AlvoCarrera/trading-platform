@@ -1,9 +1,5 @@
-// src/styles/components/_menu.scss
-
-@import "../variables";
-
 .menu-wrapper {
-  height: calc(100vh - 64px); // para que empiece debajo del TopBar
+  height: 100vh; // ← Fijo al alto total de la ventana
   padding-top: 64px;
   width: 220px;
   background-color: $color-surface;
@@ -11,9 +7,13 @@
   flex-direction: column;
   justify-content: space-between;
   transition: width 0.3s ease-in-out;
+  position: fixed; // ← Se mantiene fijo en scroll
+  top: 0;
+  left: 0;
+  z-index: 100;
 
   &.collapsed {
-    width: 0px;
+    width: 60px;
 
     .menu-header,
     .menu-footer,
@@ -29,8 +29,8 @@
     color: $color-white;
     font-size: 1.2rem;
     cursor: pointer;
-    margin: $spacing-sm;
     transition: color 0.2s ease-in-out;
+    margin-bottom: 3rem;
 
     &:hover {
       color: $color-gray-light;
@@ -89,10 +89,11 @@
 
 @media (max-width: 768px) {
   .menu-wrapper {
-    width: 100%;
+    position: static;
     height: auto;
-    margin-top: 64px;
+    width: 100%;
     padding: $spacing-md;
+    margin-top: 64px;
 
     &.collapsed {
       width: 100%;

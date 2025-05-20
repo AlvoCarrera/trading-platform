@@ -6,6 +6,8 @@
 @import "./pages/layout";
 @import "./pages/topbar";
 @import "./pages/noticias";
+@import "./pages/spinner";
+@import "./pages/bitacora";
 
 .app {
   background-color: #0a0f1c;
@@ -28,5 +30,9 @@
     color: #00ffcc;
     font-family: Arial, sans-serif;
     font-size: 2rem;
+  }
+  .fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
   }
 }

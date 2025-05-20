@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import Noticias from "../pages/Noticias";
+import Bitacora from "../pages/Bitacora";
 import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
@@ -26,6 +27,15 @@ const AppRoutes = () => {
         element={
           <PrivateRoute>
             <Noticias />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/bitacora"
+        element={
+          <PrivateRoute>
+            <Bitacora />
           </PrivateRoute>
         }
       />

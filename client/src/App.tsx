@@ -3,16 +3,20 @@ import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./router";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { MenuProvider } from "./context/MenuContext";
-import Menu from "./pages/Menu";
-import TopBar from "./pages/TopBar";
+import { LoadingProvider, useLoading } from "./context/LoadingContext";
+import Menu from "./components/Menu";
+import TopBar from "./components/TopBar";
+import Spinner from "./components/Spinner";
 
 const AppContent = () => {
   const { user, loading } = useAuth();
+  const { loading: globalLoading } = useLoading();
 
   if (loading) return null;
 
   return (
     <>
+      {globalLoading && <Spinner />}
       {user && <TopBar />}
       <div className="layout">
         {user && <Menu />}
@@ -26,9 +30,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <MenuProvider>
-          <AppContent />
-        </MenuProvider>
+        <LoadingProvider>
+          <MenuProvider>
+            <AppContent />
+          </MenuProvider>
+        </LoadingProvider>
       </AuthProvider>
     </BrowserRouter>
   );
