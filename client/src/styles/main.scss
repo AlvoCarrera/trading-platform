@@ -8,7 +8,8 @@
 @import "./pages/noticias";
 @import "./pages/spinner";
 @import "./pages/bitacora";
-
+@import "./components/bitacoraForm";
+@import "./components/bitacoraTable";
 .app {
   background-color: #0a0f1c;
   min-height: 100vh;
