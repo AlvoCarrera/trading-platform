@@ -9,7 +9,7 @@ export const createTradingEntry = async (entryData: {
   result: "TP" | "SL" | "BE";
   lotSize: number;
 }) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");  
 
   const response = await fetch("http://localhost:4000/api/bitacora", {
     method: "POST",

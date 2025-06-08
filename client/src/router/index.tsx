@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-import Noticias from "../pages/Noticias";
+import Noticias from "../pages/News";
 import Bitacora from "../pages/Bitacora";
 import PrivateRoute from "./PrivateRoute";
 

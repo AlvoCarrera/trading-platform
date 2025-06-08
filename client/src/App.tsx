@@ -5,22 +5,24 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import { MenuProvider } from "./context/MenuContext";
 import { LoadingProvider, useLoading } from "./context/LoadingContext";
 import Menu from "./components/Menu";
-import TopBar from "./components/TopBar";
 import Spinner from "./components/Spinner";
+import { useState } from "react";
 
 const AppContent = () => {
   const { user, loading } = useAuth();
   const { loading: globalLoading } = useLoading();
+  const [collapsed, setCollapsed] = useState(false);
 
   if (loading) return null;
 
   return (
     <>
       {globalLoading && <Spinner />}
-      {user && <TopBar />}
-      <div className="layout">
-        {user && <Menu />}
-        <AppRoutes />
+      <div className={`layout-container ${collapsed ? "collapsed" : ""}`}>
+        {user && <Menu collapsed={collapsed} setCollapsed={setCollapsed} />}
+        <div className="layout">
+          <AppRoutes />
+        </div>
       </div>
     </>
   );

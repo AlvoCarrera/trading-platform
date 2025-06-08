@@ -1,20 +1,38 @@
 @import "../variables";
 
+body {
+  background-color: #121212; // Fondo fijo, no se mueve con el layout
+}
+
+.layout-container {
+  display: flex;
+  transition: all 0.3s ease;
+  min-height: 100vh;
+  background-color: #121212; // fondo general para evitar parches visuales
+}
+
+.layout-container.collapsed .layout {
+  margin-left: 70px;
+}
+
 .layout {
   display: flex;
-  height: 100vh;
-  width: 100%;
+  margin-left: 240px;
+  padding: 2rem;
+  color: white;
+  transition: margin-left 0.3s ease;
+  flex: 1;
 }
 
 .main-content {
   flex: 1;
-  margin-left: 220px; // ancho del menú expandido
-  margin-top: 64px; // altura del topbar
+  margin-left: 220px;
+  margin-top: 64px;
   padding: $spacing-xl $spacing-lg;
   transition: margin-left 0.3s ease-in-out, padding 0.3s ease-in-out;
 
   &.collapsed {
-    margin-left: 60px; // ancho del menú colapsado
+    margin-left: 60px;
   }
 }
 
@@ -26,7 +44,7 @@
 
 @media (max-width: 768px) {
   .main-content {
-    margin-left: 0; // El menú se comporta diferente en móvil
+    margin-left: 0;
     padding: $spacing-xl 3vw;
   }
 }

@@ -1,108 +1,161 @@
-.menu-wrapper {
-  height: 100vh; // ← Fijo al alto total de la ventana
-  padding-top: 64px;
-  width: 220px;
-  background-color: $color-surface;
+.sidebar-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 240px;
+  background-color: #1e1e1e;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: width 0.3s ease-in-out;
-  position: fixed; // ← Se mantiene fijo en scroll
-  top: 0;
-  left: 0;
-  z-index: 100;
+  z-index: 10;
+  transition: width 0.3s ease;
+}
 
-  &.collapsed {
-    width: 60px;
+.sidebar-container.collapsed {
+  width: 70px;
 
-    .menu-header,
-    .menu-footer,
-    .menu-nav ul li a span {
-      display: none;
-    }
+  .logo,
+  .menu-items span,
+  .user-section span,
+  .dropdown {
+    display: none;
   }
 
-  .toggle-button {
-    align-self: flex-end;
-    background: transparent;
-    border: none;
-    color: $color-white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-    margin-bottom: 3rem;
-
-    &:hover {
-      color: $color-gray-light;
-    }
-  }
-
-  .menu-header {
-    font-size: $font-size-lg;
-    font-weight: bold;
-    margin-bottom: $spacing-lg;
-    color: $color-accent;
-    padding-left: $spacing-md;
-  }
-
-  .menu-nav {
-    flex-grow: 1;
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0 $spacing-sm;
-
-      li {
-        margin-bottom: $spacing-md;
-
-        a {
-          display: flex;
-          align-items: center;
-          gap: $spacing-sm;
-          color: $color-white;
-          text-decoration: none;
-          font-size: $font-size-base;
-          font-weight: 500;
-          transition: color 0.2s ease-in-out;
-
-          &:hover {
-            color: $color-accent;
-          }
-
-          svg {
-            font-size: 1.2rem;
-            min-width: 24px;
-          }
-        }
-      }
-    }
-  }
-
-  .menu-footer {
-    font-size: $font-size-sm;
-    color: $color-gray-light;
-    padding-left: $spacing-md;
-    margin-bottom: $spacing-xl;
+  .avatar {
+    margin: 0 auto;
   }
 }
 
-@media (max-width: 768px) {
-  .menu-wrapper {
-    position: static;
-    height: auto;
-    width: 100%;
-    padding: $spacing-md;
-    margin-top: 64px;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1.5rem 1rem;
+  color: white;
+}
 
-    &.collapsed {
-      width: 100%;
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #10f4c2;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.collapse-btn {
+  align-self: flex-end;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.menu-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #ccc;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+
+    &.active,
+    &:hover {
+      background-color: #2c2c2c;
+      color: white;
     }
+  }
+}
 
-    .menu-nav ul {
+.user-section {
+  position: relative;
+  border-top: 1px solid #333;
+  padding-top: 1rem;
+  text-align: center;
+
+  .user-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+
+    .avatar {
+      background-color: #10f4c2;
+      color: black;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
       display: flex;
-      flex-wrap: wrap;
-      gap: $spacing-md;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
     }
+  }
+
+  .dropdown {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2a2a2a;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    width: 200px;
+    text-align: left;
+    animation: fadeIn 0.2s ease-in-out;
+    z-index: 999;
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 0.9rem;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    hr {
+      margin: 0.5rem 0;
+      border: none;
+      border-top: 1px solid #444;
+    }
+
+    .logout {
+      color: #f87171;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }

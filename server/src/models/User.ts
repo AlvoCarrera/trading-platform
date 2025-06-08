@@ -5,4 +5,5 @@ export interface User {
   displayName: string;
   authProvider: 'local' | 'google';
   createdAt: Date;
+  remaining_requests?: number;
 }
