@@ -1,41 +1,22 @@
 @import "../variables";
 
-.container-login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 2rem;
-  gap: 10rem;
-
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 400px;
-    padding: 10rem;
-
-    img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: $radius-default;
-    }
-  }
-}
-
 .login-container {
-  width: 25rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
   padding: $spacing-lg;
   background: $color-surface;
   border-radius: $radius-large;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
   color: $color-white;
   font-family: $font-main;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   h2 {
     font-size: $font-size-lg;
@@ -48,6 +29,27 @@
     flex-direction: column;
     gap: $spacing-sm;
     width: 100%;
+
+    .back-button-wrapper {
+      align-self: flex-start;
+      margin-bottom: $spacing-sm;
+
+      .back-button {
+        margin: 0;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          color: $color-white;
+          cursor: pointer;
+          transition: color 0.2s;
+
+          &:hover {
+            color: $color-accent;
+          }
+        }
+      }
+    }
 
     .form-group {
       display: flex;
@@ -123,23 +125,11 @@
 
 @media (max-width: 768px) {
   .container-login {
-    flex-direction: column;
     padding: 2rem 1rem;
-    gap: 2rem;
-  }
-
-  .logo-container {
-    max-width: 300px;
-    padding: 1rem;
   }
 
   .login-container {
     width: 100%;
-    align-items: center;
-    text-align: center;
-
-    h2 {
-      text-align: center;
-    }
+    max-width: 25rem;
   }
 }

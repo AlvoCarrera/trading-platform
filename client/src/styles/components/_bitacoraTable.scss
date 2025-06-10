@@ -73,3 +73,102 @@
     }
   }
 }
+
+// Bitácora detail view modal styles
+.bitacora-detail-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: $color-surface;
+  color: $color-white;
+  border-radius: $radius-default;
+  padding: $spacing-lg;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  overflow-y: auto;
+  max-height: 90vh;
+
+  h2 {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-md;
+    color: $color-accent;
+  }
+
+  .detail-item {
+    margin-bottom: $spacing-sm;
+
+    strong {
+      color: $color-accent;
+      margin-right: $spacing-xs;
+    }
+  }
+
+  .modal-actions {
+    margin-top: $spacing-lg;
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+
+    button {
+      @extend .app-button;
+    }
+  }
+
+  .modal-edit-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Delete confirmation modal styles
+.delete-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-modal-box {
+  background-color: $color-surface;
+  color: $color-white;
+  padding: $spacing-lg;
+  border-radius: $radius-default;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.delete-confirmation-modal {
+  h3 {
+    font-size: $font-size-md;
+    margin-bottom: $spacing-md;
+    color: $color-danger;
+  }
+
+  p {
+    font-size: $font-size-base;
+    margin-bottom: $spacing-lg;
+    color: $color-text-light;
+  }
+}
+
+.delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-md;
+
+  button {
+    @extend .app-button;
+  }
+}

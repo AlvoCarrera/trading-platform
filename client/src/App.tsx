@@ -4,6 +4,7 @@ import AppRoutes from "./router";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { MenuProvider } from "./context/MenuContext";
 import { LoadingProvider, useLoading } from "./context/LoadingContext";
+import { NotificationProvider } from "./context/NotificationContext";
 import Menu from "./components/Menu";
 import Spinner from "./components/Spinner";
 import { useState } from "react";
@@ -18,12 +19,16 @@ const AppContent = () => {
   return (
     <>
       {globalLoading && <Spinner />}
-      <div className={`layout-container ${collapsed ? "collapsed" : ""}`}>
-        {user && <Menu collapsed={collapsed} setCollapsed={setCollapsed} />}
-        <div className="layout">
-          <AppRoutes />
+      {user ? (
+        <div className={`layout-container ${collapsed ? "collapsed" : ""}`}>
+          <Menu collapsed={collapsed} setCollapsed={setCollapsed} />
+          <div className="layout">
+            <AppRoutes />
+          </div>
         </div>
-      </div>
+      ) : (
+        <AppRoutes />
+      )}
     </>
   );
 };
@@ -31,13 +36,15 @@ const AppContent = () => {
 const App = () => {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <LoadingProvider>
-          <MenuProvider>
-            <AppContent />
-          </MenuProvider>
-        </LoadingProvider>
-      </AuthProvider>
+      <NotificationProvider>
+        <AuthProvider>
+          <LoadingProvider>
+            <MenuProvider>
+              <AppContent />
+            </MenuProvider>
+          </LoadingProvider>
+        </AuthProvider>
+      </NotificationProvider>
     </BrowserRouter>
   );
 };

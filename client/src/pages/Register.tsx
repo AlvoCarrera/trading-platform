@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// src/pages/Register.tsx
-import React from "react";
+
+import Button from "../components/ui/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -37,6 +38,11 @@ const Register = () => {
 
   return (
     <div className="login-container">
+      <div className="back-button-wrapper">
+        <button className="back-button" onClick={() => navigate("/login")}>
+          <ArrowLeft size={20} />
+        </button>
+      </div>
       <h2>Registrarse</h2>
       <form onSubmit={formik.handleSubmit} className="login-form">
         <div className="form-group">
@@ -84,9 +90,9 @@ const Register = () => {
           ) : null}
         </div>
 
-        <button type="submit" disabled={formik.isSubmitting}>
+        <Button type="submit" variant="primary" disabled={formik.isSubmitting}>
           {formik.isSubmitting ? "Registrando..." : "Crear cuenta"}
-        </button>
+        </Button>
       </form>
     </div>
   );

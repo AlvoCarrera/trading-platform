@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { createTradingEntry } from "../../services/tradingEntryServices";
+import { useNotification } from "../../context/NotificationContext";
 import Button from "../../components/ui/Button";
 
 interface TradingEntry {
@@ -31,6 +32,7 @@ export const TradingEntryForm: React.FC<Props> = ({ onClose }) => {
     result: "TP",
     lotSize: 0,
   });
+  const { notify } = useNotification();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -56,7 +58,7 @@ export const TradingEntryForm: React.FC<Props> = ({ onClose }) => {
 
     try {
       await createTradingEntry(formattedData);
-      alert("Operación guardada con éxito ✅");
+      notify("Operación creada correctamente", "success");
 
       setFormData({
         datetime: "",
@@ -73,7 +75,7 @@ export const TradingEntryForm: React.FC<Props> = ({ onClose }) => {
       onClose();
     } catch (error: any) {
       console.error("Error:", error);
-      alert("Error al guardar: " + error.message);
+      notify("Error al crear operación", "error");
     }
   };
 
