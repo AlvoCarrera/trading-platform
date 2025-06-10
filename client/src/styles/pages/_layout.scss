@@ -1,56 +1,20 @@
 @import "../variables";
 
 body {
-  background-color: #121212; // Fondo fijo, no se mueve con el layout
+  background-color: $color-background-dark;
 }
 
 .layout-container {
   display: flex;
   transition: all 0.3s ease;
   min-height: 100vh;
-  background-color: #121212; // fondo general para evitar parches visuales
-}
-
-.layout-container.collapsed .layout {
-  margin-left: 70px;
 }
 
 .layout {
   display: flex;
   margin-left: 240px;
-  padding: 2rem;
-  color: white;
+  padding: $spacing-lg;
+  color: $color-white;
   transition: margin-left 0.3s ease;
   flex: 1;
-}
-
-.main-content {
-  flex: 1;
-  margin-left: 220px;
-  margin-top: 64px;
-  padding: $spacing-xl $spacing-lg;
-  transition: margin-left 0.3s ease-in-out, padding 0.3s ease-in-out;
-
-  &.collapsed {
-    margin-left: 60px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .main-content {
-    padding: $spacing-xl 4vw;
-  }
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-    padding: $spacing-xl 3vw;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-content {
-    padding: $spacing-xl 2vw;
-  }
 }

@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { Brain, TrendingUp, Clock3, Newspaper, Lightbulb } from "lucide-react";
 import { getNewsFromAI } from "../services/newsService";
+import { useAuth } from "../context/AuthContext";
+import LoadingAI from "../components/LoadingAI";
+import Button from "../components/ui/Button";
 
 type NewsSummaryItem = {
   title: string;
@@ -38,14 +41,21 @@ const News = () => {
   const [error, setError] = useState("");
   const [realNews, setRealNews] = useState<FormattedNewsItem[]>([]);
   const [analysis, setAnalysis] = useState<TechnicalAnalysis | null>(null);
-
-  const username = localStorage.getItem("username") || "Trader";
+  const { user } = useAuth();
 
   const handleFetchNews = async () => {
-    setLoading(true);
+    // Limpia resultados previos
+    setRealNews([]);
+    setAnalysis(null);
     setError("");
+    setLoading(true);
+
     try {
-      const raw: AIResponseRaw = await getNewsFromAI(pair, username);
+      const raw: AIResponseRaw = await getNewsFromAI(
+        pair,
+        user?.displayName || "Trader"
+      );
+
       const formattedNews: FormattedNewsItem[] = (raw.realNewsToday || []).map(
         (item) => ({
           hour: new Date(item.date).toLocaleTimeString("es-EC", {
@@ -62,8 +72,6 @@ const News = () => {
       setAnalysis(raw.analysis?.technical_analysis || null);
     } catch (err: any) {
       setError(err.message || "Error inesperado al consultar la IA.");
-      setRealNews([]);
-      setAnalysis(null);
     } finally {
       setLoading(false);
     }
@@ -103,23 +111,20 @@ const News = () => {
           <option value="EUR/USD">EUR/USD</option>
           <option value="USD/JPY">USD/JPY</option>
         </select>
-        <button onClick={handleFetchNews} disabled={loading}>
+        <Button
+          onClick={handleFetchNews}
+          disabled={loading}
+          variant="primary"
+          type="button"
+        >
           {loading ? "Consultando..." : "Consultar IA"}
-        </button>
+        </Button>
       </div>
 
       {error && <p className="error">{error}</p>}
-      {loading && (
-        <div className="loading-indicator">
-          <span className="dot" />
-          <span className="dot" />
-          <span className="dot" />
-          <span className="dot" />
-          <p>Consultando IA...</p>
-        </div>
-      )}
+      {loading && <LoadingAI />}
 
-      {(realNews.length > 0 || analysis) && (
+      {!loading && (realNews.length > 0 || analysis) && (
         <div className="news-results">
           {realNews.length > 0 && (
             <div className="news-block">
@@ -150,7 +155,6 @@ const News = () => {
 
               <div className="card recommendation">
                 <h3>
-                  {" "}
                   <Lightbulb size={18} /> Recomendación
                 </h3>
                 <p>{analysis.recommendation}</p>

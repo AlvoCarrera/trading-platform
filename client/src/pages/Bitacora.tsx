@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
 import { TradingEntryForm } from "./bitacora/TradingEntryForm";
 import { TradingEntriesTable } from "./bitacora/TadingEntriesTables";
+import Button from "../components/ui/Button";
+import { NotebookPen, PlusCircle, Eye } from "lucide-react";
 
 const Bitacora = () => {
   const { collapsed } = useMenu();
@@ -12,36 +14,37 @@ const Bitacora = () => {
   };
 
   return (
-    <div className={`main-content ${collapsed ? "collapsed" : ""}`}>
-      <div className="bitacora-wrapper">
-        <h1>Bitácora de Trading</h1>
-        <p>
-          Aquí puedes registrar y analizar todas tus operaciones de trading.
-          Llevar una bitácora te ayuda a mejorar tus decisiones y disciplina
-          como trader.
-        </p>
+    <div className={`bitacora-page ${collapsed ? "collapsed" : ""}`}>
+      <h1 className="title">
+        <NotebookPen size={24} /> Bitácora de Trading
+      </h1>
+      <p className="description">
+        Aquí puedes registrar y analizar todas tus operaciones de trading.
+        Llevar una bitácora te ayuda a mejorar tus decisiones y disciplina como
+        trader.
+      </p>
 
-        <div className="bitacora-actions">
-          <button onClick={() => handleToggle("form")}>
-            {view === "form" ? "Cerrar Formulario" : "Nueva Entrada"}
-          </button>
-          <button onClick={() => handleToggle("table")}>
-            {view === "table" ? "Ocultar Operaciones" : "Ver Operaciones"}
-          </button>
-        </div>
+      <div className="bitacora-actions">
+        <Button variant="primary" onClick={() => handleToggle("form")}>
+          <PlusCircle size={18} /> Nueva Entrada
+        </Button>
 
-        {view === "form" && (
-          <div className="form-wrapper">
-            <TradingEntryForm onClose={() => setView(null)} />
-          </div>
-        )}
-
-        {view === "table" && (
-          <div className="table-wrapper">
-            <TradingEntriesTable />
-          </div>
-        )}
+        <Button variant="secondary" onClick={() => handleToggle("table")}>
+          <Eye size={18} /> Ver Operaciones
+        </Button>
       </div>
+
+      {view === "form" && (
+        <div className="form-wrapper">
+          <TradingEntryForm onClose={() => setView(null)} />
+        </div>
+      )}
+
+      {view === "table" && (
+        <div className="table-wrapper">
+          <TradingEntriesTable />
+        </div>
+      )}
     </div>
   );
 };

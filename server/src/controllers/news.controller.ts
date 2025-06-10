@@ -1,5 +1,5 @@
 // src/controllers/newsController.ts
-/*import { Request, Response } from "express";
+import { Request, Response } from "express";
 import { getEconomicNewsToday } from "../services/realNewsService";
 import { getNewsFromOpenRouter } from "../services/openRouterService";
 
@@ -84,9 +84,9 @@ ${JSON.stringify(relevantNews)}
     console.error("[AI News Controller Error]", message);
     res.status(500).json({ error: message });
   }
-};*/
+};
 
-
+/*
 
 import { Request, Response } from "express";
 import { mockNewsData } from "../mocks/mockNewsData";
@@ -107,4 +107,4 @@ export const getAIAnalysisFromRealNews = async (req: Request, res: Response) => 
     console.error("[Mock News Controller Error]", message);
     return res.status(500).json({ error: message });
   }
-};
+};*/

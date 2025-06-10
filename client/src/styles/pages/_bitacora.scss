@@ -1,118 +1,120 @@
 @import "../variables";
 
-.formulario-bitacora {
-  background-color: $color-background-dark;
+.bitacora-page {
   padding: $spacing-xl;
-  border-radius: $radius-large;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
-  margin: 64px auto;
   color: $color-white;
 
-  h2 {
-    font-size: $font-size-lg;
-    color: $color-accent;
-    margin-bottom: $spacing-lg;
-    text-align: center;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-md;
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-
-      label {
-        margin-bottom: $spacing-xs;
-        font-size: $font-size-sm;
-        color: $color-text-muted;
-      }
-
-      input,
-      select {
-        padding: $spacing-sm $spacing-md;
-        border-radius: $radius-default;
-        border: 1px solid $color-gray-dark;
-        background-color: #1c1c1c;
-        color: $color-white;
-        font-size: $font-size-base;
-        transition: border-color 0.2s ease-in-out;
-
-        &:focus {
-          outline: none;
-          border-color: $color-accent;
-        }
-      }
-
-      .error {
-        margin-top: $spacing-xs;
-        font-size: $font-size-sm;
-        color: $color-danger;
-      }
-    }
-
-    button {
-      padding: $spacing-sm;
-      background-color: $color-accent;
-      color: $color-background-dark;
-      font-weight: bold;
-      font-size: $font-size-base;
-      border: none;
-      border-radius: $radius-default;
-      cursor: pointer;
-      transition: background 0.2s ease-in-out;
-
-      &:hover {
-        background-color: lighten($color-accent, 10%);
-      }
-    }
-  }
-}
-
-.bitacora-overview {
-  background-color: $color-background-dark;
-  padding: $spacing-xl;
-  border-radius: $radius-large;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  max-width: 800px;
-  margin: 64px auto;
-  color: $color-white;
-  text-align: center;
-
-  h2 {
+  .title {
     font-size: $font-size-xl;
-    color: $color-accent;
-    margin-bottom: $spacing-md;
+    font-weight: bold;
+    margin-bottom: $spacing-sm;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
   }
-
-  p {
-    font-size: $font-size-base;
+  .description {
     color: $color-text-light;
     margin-bottom: $spacing-lg;
   }
-
-  .bitacora-buttons {
+  .bitacora-actions {
     display: flex;
-    justify-content: center;
-    gap: $spacing-lg;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xl;
+  }
 
-    button {
-      padding: $spacing-sm $spacing-lg;
+  .bitacora-wrapper {
+    padding: $spacing-xl;
+    color: $color-white;
+
+    h1 {
+      font-size: $font-size-xl;
+      color: $color-accent;
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
       font-size: $font-size-base;
-      font-weight: bold;
-      color: $color-background-dark;
-      background-color: $color-accent;
-      border: none;
-      border-radius: $radius-default;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
+      color: $color-text-light;
+      margin-bottom: $spacing-md;
+    }
 
-      &:hover {
-        background-color: lighten($color-accent, 10%);
+    .form-wrapper {
+      background-color: $color-background-dark;
+      padding: $spacing-xl;
+      border-radius: $radius-large;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      margin: 0 auto $spacing-xl auto;
+      color: $color-white;
+
+      h2 {
+        font-size: $font-size-lg;
+        color: $color-accent;
+        margin-bottom: $spacing-lg;
+        text-align: center;
       }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            margin-bottom: $spacing-xs;
+            font-size: $font-size-sm;
+            color: $color-text-muted;
+          }
+
+          input,
+          select {
+            padding: $spacing-sm $spacing-md;
+            border-radius: $radius-default;
+            border: 1px solid $color-gray-dark;
+            background-color: #1c1c1c;
+            color: $color-white;
+            font-size: $font-size-base;
+            transition: border-color 0.2s ease-in-out;
+
+            &:focus {
+              outline: none;
+              border-color: $color-accent;
+            }
+          }
+
+          .error {
+            margin-top: $spacing-xs;
+            font-size: $font-size-sm;
+            color: $color-danger;
+          }
+        }
+
+        button {
+          padding: $spacing-sm;
+          background-color: $color-accent;
+          color: $color-background-dark;
+          font-weight: bold;
+          font-size: $font-size-base;
+          border: none;
+          border-radius: $radius-default;
+          cursor: pointer;
+          transition: background 0.2s ease-in-out;
+
+          &:hover {
+            background-color: lighten($color-accent, 10%);
+          }
+        }
+      }
+    }
+
+    .table-wrapper {
+      margin-top: $spacing-xl;
     }
   }
 }

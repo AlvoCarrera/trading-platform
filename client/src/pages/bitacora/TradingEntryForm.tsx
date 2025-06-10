@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { createTradingEntry } from "../../services/tradingEntryServices";
+import Button from "../../components/ui/Button";
 
 interface TradingEntry {
   datetime: string;
@@ -57,7 +58,6 @@ export const TradingEntryForm: React.FC<Props> = ({ onClose }) => {
       await createTradingEntry(formattedData);
       alert("Operación guardada con éxito ✅");
 
-      // Limpiar el formulario
       setFormData({
         datetime: "",
         pair: "",
@@ -70,7 +70,6 @@ export const TradingEntryForm: React.FC<Props> = ({ onClose }) => {
         lotSize: 0,
       });
 
-      // Cerrar el formulario
       onClose();
     } catch (error: any) {
       console.error("Error:", error);
@@ -169,7 +168,14 @@ export const TradingEntryForm: React.FC<Props> = ({ onClose }) => {
         required
       />
 
-      <button type="submit">Guardar operación</button>
+      <div className="form-buttons">
+        <Button type="submit" variant="primary">
+          Guardar operación
+        </Button>
+        <Button type="button" variant="cancel" onClick={onClose}>
+          Cancelar
+        </Button>
+      </div>
     </form>
   );
 };

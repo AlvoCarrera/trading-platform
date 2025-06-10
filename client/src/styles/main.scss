@@ -4,11 +4,14 @@
 @import "./pages/news";
 @import "./pages/menu";
 @import "./pages/layout";
-@import "./pages/topbar";
+
 @import "./pages/spinner";
 @import "./pages/bitacora";
 @import "./components/bitacoraForm";
 @import "./components/bitacoraTable";
+@import "./components/loadingIA";
+@import "./components/button";
+
 .app {
   background-color: #0a0f1c;
   min-height: 100vh;

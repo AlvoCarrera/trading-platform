@@ -1,10 +1,12 @@
+@import "../variables";
+
 .sidebar-container {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
   width: 240px;
-  background-color: #1e1e1e;
+  background-color: $color-surface;
   display: flex;
   flex-direction: column;
   z-index: 10;
@@ -31,27 +33,27 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding: 1.5rem 1rem;
-  color: white;
+  padding: $spacing-lg $spacing-md;
+  color: $color-white;
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: $font-size-lg;
   font-weight: bold;
-  color: #10f4c2;
+  color: $color-accent;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: $spacing-xl;
 }
 
 .collapse-btn {
   align-self: flex-end;
   cursor: pointer;
-  color: #aaa;
+  color: $color-text-muted;
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing-md;
 
   &:hover {
-    color: white;
+    color: $color-white;
   }
 }
 
@@ -59,43 +61,43 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: $spacing-md;
 
   a {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: #ccc;
+    color: $color-gray-light;
     text-decoration: none;
-    padding: 0.6rem 1rem;
-    border-radius: 0.5rem;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-default;
 
     &.active,
     &:hover {
-      background-color: #2c2c2c;
-      color: white;
+      background-color: $color-gray-dark;
+      color: $color-white;
     }
   }
 }
 
 .user-section {
   position: relative;
-  border-top: 1px solid #333;
-  padding-top: 1rem;
+  border-top: 1px solid $color-gray-dark;
+  padding-top: $spacing-md;
   text-align: center;
 
   .user-name {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: $spacing-xs;
     cursor: pointer;
-    padding: 0.5rem 0;
+    padding: $spacing-xs 0;
 
     .avatar {
-      background-color: #10f4c2;
-      color: black;
-      border-radius: 50%;
+      background-color: $color-accent;
+      color: $color-background-dark;
+      border-radius: $radius-round;
       width: 30px;
       height: 30px;
       display: flex;
@@ -110,9 +112,9 @@
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    background: #2a2a2a;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
+    background: lighten($color-surface, 2%);
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-default;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     width: 200px;
     text-align: left;
@@ -122,28 +124,28 @@
     .dropdown-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: $spacing-xs;
       padding: 0.4rem 0;
-      color: #ccc;
+      color: $color-gray-light;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: $font-size-sm;
 
       &:hover {
-        color: white;
+        color: $color-white;
       }
     }
 
     hr {
-      margin: 0.5rem 0;
+      margin: $spacing-xs 0;
       border: none;
-      border-top: 1px solid #444;
+      border-top: 1px solid $color-gray-dark;
     }
 
     .logout {
-      color: #f87171;
+      color: $color-danger;
 
       &:hover {
-        color: white;
+        color: $color-white;
       }
     }
   }
